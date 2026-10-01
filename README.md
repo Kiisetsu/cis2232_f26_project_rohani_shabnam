@@ -1,8 +1,8 @@
 # cis2232_f26_project_rohani_shabnam
 Pet Adoption App
 
-| Developer Team |
-| -------------- |
+| Developer Team | Name |
+| -------------- | ---- |
 | BA/Business Client | Bridget |
 | Developer | Shab |
 | Project Manager/QA | Richard |
