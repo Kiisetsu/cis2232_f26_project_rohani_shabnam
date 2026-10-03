@@ -4,6 +4,11 @@ import entity.Animal;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+/**
+ * Author: Shabnam Rohani
+ * Class: CIS2232
+ * Description: Pet Adoption App Project for the semester. Allows user to enter animal inputs and later calculate adoption fees. (to be continued)
+ */
 
 public class Controller {
 
@@ -47,7 +52,7 @@ public class Controller {
                     System.out.println("Invalid choice.");
             }
 
-        } while (!choice.equals("X"));
+        } while (!choice.equals(EXIT));
 
 
         scanner.close();
