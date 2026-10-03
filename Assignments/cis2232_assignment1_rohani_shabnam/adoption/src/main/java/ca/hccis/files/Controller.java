@@ -39,7 +39,7 @@ public class Controller {
                     viewAnimals(animals);
                     break;
 
-                case EXIT:
+                case "X":
                     System.out.println("Goodbye!");
                     break;
 
@@ -47,7 +47,7 @@ public class Controller {
                     System.out.println("Invalid choice.");
             }
 
-        } while (!choice.equals(EXIT));
+        } while (!choice.equals("X"));
 
 
         scanner.close();
