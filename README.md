@@ -48,3 +48,45 @@ Fee = (200 + 50) * 1 = 250 * 1 = $250
 For example, the user wants to adopt a young dog with medium-length fur.
 Fee = (500 + 100) * 1.5 = 600 * 1.5 = $900 |
 
+## Sprint 2 - Animals by Species and Age Report (Work Item 5)
+
+### Purpose
+Lets staff list the animals at the adoption agency that match a chosen species and age range.
+
+### Inputs
+The user enters the criteria on the report input page (`/reports/animals`):
+
+| Input | Type | Description |
+|---|---|---|
+| Species | Selection (Cat or Dog) | The species of animal to report on |
+| Minimum age | Number (years) | Youngest age to include |
+| Maximum age | Number (years) | Oldest age to include |
+
+### Output (displayed on screen)
+After submitting the form, the user is taken to the report results page, which shows:
+- The criteria that were used (species, minimum age, maximum age)
+- A table of every matching animal with: ID, name, sex, species, colour, coat and age
+- The list is sorted by age, then name
+- A bar chart showing the age of each matching animal
+- A "No animals matched" message when nothing meets the criteria
+- The name and location of the file the report was saved to
+
+### Output (saved to file)
+The same results are written to a text file in `c:\cis2232\`.
+The file name is the report type plus the date and time, for example:
+`AnimalsBySpeciesAndAge202610301623.txt`
+
+The file contains the report title, the criteria used, one line per animal and a total count.
+
+### Technical notes
+- Data comes from the `Animal` table in the `cis2232_pet_adoption_app` MySQL database.
+- The report is implemented with a DAO class (`AnimalDAO`) using JDBC, not Spring Data JPA.
+- Controller: `ReportController`. Views: `reports/animalInput.html` and `reports/animalResults.html`.
+
+### Testing (for the BA)
+1. Run `createDatabase.sql` to create and fill the database.
+2. Start the application and open `http://localhost:8080/reports/animals`.
+3. Select Cat, minimum age 0 and maximum age 20, then run the report.
+4. Confirm the table shows the matching cats and that a new file appears in `c:\cis2232\`.
+5. Try a range with no animals and confirm the "No animals matched" message appears.
+
