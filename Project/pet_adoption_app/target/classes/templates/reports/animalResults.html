@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Animal Report Results</title>
+    <style>
+        html { --main-color: #D9C2F0; }
+        body { font-family: sans-serif; margin: 0; }
+        header { background: var(--main-color); padding: 1rem 2rem; }
+        main { padding: 2rem; }
+        table { border-collapse: collapse; }
+        th, td { border: 1px solid #999; padding: 0.4rem 0.8rem; }
+        th { background: var(--main-color); }
+    </style>
+</head>
+<body>
+<header><h1>Animal Report Results</h1></header>
+<main>
+    <p th:if="${error}" th:text="${error}" style="color:red"></p>
+
+    <div th:unless="${error}">
+        <p>Species: <b th:text="${species}"></b>,
+            age <span th:text="${minAge}"></span> to <span th:text="${maxAge}"></span></p>
+
+        <table th:if="${!rows.isEmpty()}">
+            <tr><th>ID</th><th>Name</th><th>Sex</th><th>Species</th><th>Colour</th><th>Coat</th><th>Age</th></tr>
+            <tr th:each="r : ${rows}">
+                <td th:text="${r.id}"></td>
+                <td th:text="${r.name}"></td>
+                <td th:text="${r.sex}"></td>
+                <td th:text="${r.species}"></td>
+                <td th:text="${r.colour}"></td>
+                <td th:text="${r.coat}"></td>
+                <td th:text="${r.age}"></td>
+            </tr>
+        </table>
+        <p th:if="${rows.isEmpty()}">No animals matched.</p>
+
+        <p>Saved to: <span th:text="${fileName}"></span></p>
+    </div>
+    <p><a th:href="@{/reports/animals}">Run another report</a></p>
+</main>
+</body>
+</html>

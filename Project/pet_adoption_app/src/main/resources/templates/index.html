@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Pet Adoption</title>
+    <style>
+        html { --main-color: #D9C2F0; }
+        body { font-family: sans-serif; margin: 0; }
+        header { background: var(--main-color); padding: 1rem 2rem; }
+        main { padding: 2rem; }
+    </style>
+</head>
+<body>
+<header><h1>Pet Adoption</h1></header>
+<main>
+    <p>Welcome to the pet adoption app.</p>
+    <ul>
+        <li><a th:href="@{/reports/animals}">Animals by species and age report</a></li>
+    </ul>
+</main>
+</body>
+</html>
