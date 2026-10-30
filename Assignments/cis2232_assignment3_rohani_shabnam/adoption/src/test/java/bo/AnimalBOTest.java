@@ -1,6 +1,7 @@
 package bo;
 
-import entity.Animal;
+import ca.hccis.adoption.bo.AnimalBO;
+import ca.hccis.adoption.entity.Animal;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
