@@ -69,7 +69,7 @@ After submitting the form, the user is taken to the report results page, which s
 - The list is sorted by age, then name
 - A bar chart showing the age of each matching animal
 - A "No animals matched" message when nothing meets the criteria
-- The name and location of the file the report was saved to
+- The name and location of the file the report was saved
 
 
 
