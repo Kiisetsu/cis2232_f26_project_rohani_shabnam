@@ -33,47 +33,34 @@ public class AnimalBO {
      * @return the animal's adoption fee
      */
     public double calculate(Animal animal) {
+        double speciesCost;
+        double ageRate;
+        double age = animal.getAge();
 
-        double speciesCost = 0;
-        double coatCost = 0;
-        double ageRate = 0;
-
-        if (animal.getSpecies().equalsIgnoreCase("cat")) {
+        if ("cat".equalsIgnoreCase(animal.getSpecies())) {
             speciesCost = 200;
-
-            if (animal.getAge() < 1) {
-                ageRate = 1.5;
-            } else if (animal.getAge() < 8) {
-                ageRate = 1.0;
-            } else if (animal.getAge() < 15) {
-                ageRate = 0.5;
-            } else {
-                ageRate = 0.25;
-            }
-
-        } else if (animal.getSpecies().equalsIgnoreCase("dog")) {
+            if (age >= 0 && age < 1)        ageRate = 1.5;
+            else if (age >= 1 && age < 8)   ageRate = 1.0;
+            else if (age >= 8 && age < 15)  ageRate = 0.5;
+            else if (age >= 15 && age <= 20) ageRate = 0.25;
+            else throw new IllegalArgumentException("Cat age must be between 0 and 20.");
+        } else if ("dog".equalsIgnoreCase(animal.getSpecies())) {
             speciesCost = 500;
-
-            if (animal.getAge() < 1) {
-                ageRate = 1.5;
-            } else if (animal.getAge() < 7) {
-                ageRate = 1.0;
-            } else if (animal.getAge() < 12) {
-                ageRate = 0.5;
-            } else {
-                ageRate = 0.25;
-            }
+            if (age >= 0 && age < 1)        ageRate = 1.5;
+            else if (age >= 1 && age < 7)   ageRate = 1.0;
+            else if (age >= 7 && age < 12)  ageRate = 0.5;
+            else if (age >= 12 && age <= 15) ageRate = 0.25;
+            else throw new IllegalArgumentException("Dog age must be between 0 and 15.");
+        } else {
+            throw new IllegalArgumentException("Species must be cat or dog.");
         }
 
-        if (animal.getCoat().equalsIgnoreCase("short")) {
-            coatCost = 50;
-        } else if (animal.getCoat().equalsIgnoreCase("medium")) {
-            coatCost = 100;
-        } else if (animal.getCoat().equalsIgnoreCase("long")) {
-            coatCost = 150;
-        } else if (animal.getCoat().equalsIgnoreCase("bald")) {
-            coatCost = 200;
-        }
+        double coatCost;
+        if ("short".equalsIgnoreCase(animal.getCoat()))       coatCost = 50;
+        else if ("medium".equalsIgnoreCase(animal.getCoat())) coatCost = 100;
+        else if ("long".equalsIgnoreCase(animal.getCoat()))   coatCost = 150;
+        else if ("bald".equalsIgnoreCase(animal.getCoat()))   coatCost = 200;
+        else throw new IllegalArgumentException("Coat must be short, medium, long or bald.");
 
         return (speciesCost + coatCost) * ageRate;
     }
