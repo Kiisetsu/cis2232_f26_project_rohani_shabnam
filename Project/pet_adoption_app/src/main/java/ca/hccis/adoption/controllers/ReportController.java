@@ -42,6 +42,8 @@ public class ReportController {
             String fileName = writeReportFile(species, minAge, maxAge, rows);
 
             model.addAttribute("rows", rows);
+            model.addAttribute("names", rows.stream().map(AnimalRow::name).toList());
+            model.addAttribute("ages", rows.stream().map(AnimalRow::age).toList());
             model.addAttribute("species", species);
             model.addAttribute("minAge", minAge);
             model.addAttribute("maxAge", maxAge);

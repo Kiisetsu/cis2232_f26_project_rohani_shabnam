@@ -14,9 +14,40 @@
 <header><h1>Pet Adoption</h1></header>
 <main>
     <p>Welcome to the pet adoption app.</p>
+    <p th:if="${error}" th:text="${error}" style="color:red"></p>
+
+    <div style="max-width: 600px">
+        <canvas id="animalChart"></canvas>
+    </div>
+
     <ul>
         <li><a th:href="@{/reports/animals}">Animals by species and age report</a></li>
     </ul>
 </main>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+<script th:inline="javascript" th:if="${speciesNames != null}">
+    const names = /*[[${speciesNames}]]*/ [];
+    const counts = /*[[${speciesCounts}]]*/ [];
+
+    new Chart(document.getElementById('animalChart'), {
+        type: 'bar',
+        data: {
+            labels: names,
+            datasets: [{
+                label: 'Animals at the agency',
+                data: counts,
+                backgroundColor: '#D9C2F0',
+                borderColor: '#6b3fa0',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: { y: { beginAtZero: true, ticks: { precision: 0 },
+                    title: { display: true, text: 'Number of animals' } } },
+            plugins: { title: { display: true, text: 'Animals by species' } }
+        }
+    });
+</script>
 </body>
 </html>

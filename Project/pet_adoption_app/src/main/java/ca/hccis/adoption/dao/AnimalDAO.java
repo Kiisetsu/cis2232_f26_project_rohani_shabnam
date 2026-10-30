@@ -9,6 +9,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 @Repository
 public class AnimalDAO {
@@ -45,5 +47,18 @@ public class AnimalDAO {
             }
         }
         return rows;
+    }
+    public Map<String, Integer> countBySpecies() throws SQLException {
+        String sql = "SELECT species, COUNT(*) AS total FROM Animal GROUP BY species ORDER BY species";
+
+        Map<String, Integer> counts = new LinkedHashMap<>();
+        try (Connection conn = dataSource.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
+            while (rs.next()) {
+                counts.put(rs.getString("species"), rs.getInt("total"));
+            }
+        }
+        return counts;
     }
 }

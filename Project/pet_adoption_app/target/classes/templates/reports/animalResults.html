@@ -34,11 +34,40 @@
                 <td th:text="${r.age}"></td>
             </tr>
         </table>
-        <p th:if="${rows.isEmpty()}">No animals matched.</p>
+        <p th:if="${rows.isEmpty()}">
+        <div style="max-width: 700px" th:if="${!rows.isEmpty()}">
+        <canvas id="ageChart"></canvas>
+        </div>
+        No animals matched.</p>
 
         <p>Saved to: <span th:text="${fileName}"></span></p>
     </div>
     <p><a th:href="@{/reports/animals}">Run another report</a></p>
 </main>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+<script th:inline="javascript" th:if="${rows != null and !rows.isEmpty()}">
+    const names = /*[[${names}]]*/ [];
+    const ages = /*[[${ages}]]*/ [];
+    const species = /*[[${species}]]*/ '';
+
+    new Chart(document.getElementById('ageChart'), {
+        type: 'bar',
+        data: {
+            labels: names,
+            datasets: [{
+                label: 'Age (years)',
+                data: ages,
+                backgroundColor: '#D9C2F0',
+                borderColor: '#6b3fa0',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: { y: { beginAtZero: true,
+                    title: { display: true, text: 'Age in years' } } },
+            plugins: { title: { display: true, text: 'Ages of matching ' + species + 's' } }
+        }
+    });
+</script>
 </body>
 </html>
