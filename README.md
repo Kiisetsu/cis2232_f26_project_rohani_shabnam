@@ -71,6 +71,47 @@ After submitting the form, the user is taken to the report results page, which s
 - A "No animals matched" message when nothing meets the criteria
 - The name and location of the file the report was saved
 
+## Sprint 3 - Animal CRUD with Spring Data JPA and Validation (Work Item 6)
+
+### Purpose
+Lets staff manage the animals at the adoption agency: view them in a list, add new animals, update existing ones and delete them. Animals are stored in the `Animal` table of the `cis2232_pet_adoption_app` MySQL database.
+
+### Functionality
+
+| Function | Page | Description |
+|---|---|---|
+| List | `/animals` | Shows all animals with their calculated adoption fee and the total of all fees |
+| Add | `/animals/add` | Blank form to enter a new animal |
+| Update | `/animals/edit/{id}` | Same form filled in with the animal's current values |
+| Delete | Delete button on the list | Asks for confirmation, then removes the animal |
+
+After add, update or delete, the user returns to the list with a confirmation message.
+
+### Fields
+| Field | Input | Rules |
+|---|---|---|
+| Name | Text | Required, maximum 50 characters |
+| Sex | Dropdown | Required, Male or Female (M or F is accepted and saved as Male or Female) |
+| Species | Dropdown | Required, Cat or Dog |
+| Colour | Text | Required, maximum 30 characters |
+| Coat | Dropdown | Required, Short, Medium, Long or Bald |
+| Age (years) | Number | Required, must be a number, cannot be negative, cats 0 to 20 and dogs 0 to 15 (inclusive) |
+
+### Validation
+Validation runs on both add and update using Spring Validation (`jakarta.validation` annotations on the `Animal` entity). If any rule fails, the form is shown again with a message beside each field that has a problem, and nothing is saved.
+- Required fields left blank show "... is required".
+- Entering text that is not a number for age shows "Age must be a number".
+- Age limits depend on species, so a dog aged 18 is rejected while a cat aged 18 is accepted. This check is made in the controller because it compares two fields.
+
+### Adoption fee
+Calculated by the program, not stored: fee = (species cost + coat cost) x age rate.
+- Species cost: Cat 200, Dog 500
+- Coat cost: Short 50, Medium 100, Long 150, Bald 200
+- Age rate: young 1.5, adult 1, senior 0.5, geriatric 0.25 (age bands differ for cats and dogs)
+
+
+
+
 
 
 
