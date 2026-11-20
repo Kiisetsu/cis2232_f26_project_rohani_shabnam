@@ -1,18 +1,15 @@
-html{
-    overflow: auto !important;
-    min-width:246px;
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@700&display=swap');
 
+html {
+    --main-color: #D9C2F0;
+    --secondary-color: #B794E0;
+    --text-dark: #212121;
 }
 
 :root {
-    /*Variable for team color*/
-    /*light ac3e37 main 770711 dark 470000*/
-    --main-color-light: #4CBB17 ;
-    --main-color-primary: #4CBB17 ;
-    --main-color-dark: #000000;
-    --main-color-text: #ffffff;
-    --main-color-bright:#90EE90;
-
+    --main-color-light: #D9C2F0;
+    --main-color-primary: #B794E0;
+    --main-color-bright: #B794E0;
 }
 
 /*input:not(.hidden){
@@ -136,19 +133,12 @@ table{
     text-align:center
 }
 
-/*reason why this ain't up there is because i want him to see it
-TODO DONE: change to html instead of using root.*/
-html {
-    --main-color: #D9C2F0;
-    --secondary-color: #B794E0;
-}
-
 /*blue on blisque is ugly.*/
 .navbar-link:not(.is-arrowless)::after{
     border-color:var(--main-color-primary) !important;
 }
 
-/*better constrast, otherwise you can't see anything on a bad monitor.'*/
+/*better contrast, otherwise you can't see anything on a bad monitor.'*/
 .navbar-link,.navbar-link:focus,.navbar-bgn{
     color: var(--main-color-text) !important
 }
@@ -173,7 +163,7 @@ html {
 }
 
 
-/*better constrast, otherwise you can't see anything on a bad monitor.'*/
+/*better contrast, otherwise you can't see anything on a bad monitor.'*/
 body,p,strong,th{
     color: #000 !important
 }
@@ -334,4 +324,25 @@ Arrange invoice list tittle and add button
 .tableStyles th:last-child,
 .tableStyles td:last-child {
     padding-right: 10px;
+}
+
+.navbar {
+    background: var(--main-color);
+    padding: 0.8rem 2rem;
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+}
+.navbar .brand {
+    font-weight: bold;
+    font-size: 1.2rem;
+    text-decoration: none;
+    color: #000;
+}
+.navbar .nav-link {
+    text-decoration: none;
+    color: #333;
+}
+.navbar .nav-link:hover {
+    text-decoration: underline;
 }

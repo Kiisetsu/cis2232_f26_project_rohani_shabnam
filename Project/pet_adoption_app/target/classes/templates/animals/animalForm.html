@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${formTitle}">Animal</title>
+    <style>
+        html { --main-color: #D9C2F0; }
+        body { font-family: sans-serif; margin: 0; }
+        .navbar { background: var(--main-color); padding: 0.8rem 2rem; display: flex; gap: 1.5rem; align-items: center; }
+        .navbar .brand { font-weight: bold; font-size: 1.2rem; text-decoration: none; color: #000; }
+        .navbar .nav-link { text-decoration: none; color: #333; }
+        main { padding: 2rem; }
+        label { display: block; margin-top: 1rem; }
+        .err { color: red; font-size: 0.9rem; }
+    </style>
+</head>
+<body>
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+<main>
+    <h1 th:text="${formTitle}"></h1>
+
+    <form method="post" th:action="@{/animals/save}" th:object="${animal}">
+        <input type="hidden" th:field="*{id}">
+
+        <label>Name
+            <input type="text" th:field="*{name}">
+            <span class="err" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+        </label>
+
+        <label>Sex
+            <select th:field="*{sex}">
+                <option value="">-- select --</option>
+                <option th:each="s : ${sexOptions}" th:value="${s}" th:text="${s}"></option>
+            </select>
+            <span class="err" th:if="${#fields.hasErrors('sex')}" th:errors="*{sex}"></span>
+        </label>
+
+        <label>Species
+            <select th:field="*{species}">
+                <option value="">-- select --</option>
+                <option th:each="s : ${speciesOptions}" th:value="${s}" th:text="${s}"></option>
+            </select>
+            <span class="err" th:if="${#fields.hasErrors('species')}" th:errors="*{species}"></span>
+        </label>
+
+        <label>Colour
+            <input type="text" th:field="*{colour}">
+            <span class="err" th:if="${#fields.hasErrors('colour')}" th:errors="*{colour}"></span>
+        </label>
+
+        <label>Coat
+            <select th:field="*{coat}">
+                <option value="">-- select --</option>
+                <option th:each="c : ${coatOptions}" th:value="${c}" th:text="${c}"></option>
+            </select>
+            <span class="err" th:if="${#fields.hasErrors('coat')}" th:errors="*{coat}"></span>
+        </label>
+
+        <label>Age (years)
+            <input type="text" th:field="*{age}">
+            <span class="err" th:if="${#fields.hasErrors('age')}" th:errors="*{age}"></span>
+        </label>
+
+        <p>
+            <button type="submit">Save</button>
+            <a th:href="@{/animals}">Cancel</a>
+        </p>
+    </form>
+</main>
+</body>
+</html>

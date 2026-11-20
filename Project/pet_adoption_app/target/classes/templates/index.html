@@ -2,6 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
     <title>Pet Adoption</title>
     <style>
         html { --main-color: #D9C2F0; }
@@ -11,7 +12,7 @@
     </style>
 </head>
 <body>
-<header><h1>Pet Adoption</h1></header>
+<div th:replace="~{fragments/navbar :: navbar}"></div>
 <main>
     <p>Welcome to the pet adoption app.</p>
     <p th:if="${error}" th:text="${error}" style="color:red"></p>

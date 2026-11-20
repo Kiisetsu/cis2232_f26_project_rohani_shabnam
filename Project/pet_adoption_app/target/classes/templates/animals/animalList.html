@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Animals</title>
+    <style>
+        html { --main-color: #D9C2F0; }
+        body { font-family: sans-serif; margin: 0; }
+        .navbar { background: var(--main-color); padding: 0.8rem 2rem; display: flex; gap: 1.5rem; align-items: center; }
+        .navbar .brand { font-weight: bold; font-size: 1.2rem; text-decoration: none; color: #000; }
+        .navbar .nav-link { text-decoration: none; color: #333; }
+        main { padding: 2rem; }
+        table { border-collapse: collapse; }
+        th, td { border: 1px solid #999; padding: 0.4rem 0.8rem; }
+        th { background: var(--main-color); }
+        .msg { color: #1a6b2a; } .err { color: red; }
+        form.inline { display: inline; }
+    </style>
+</head>
+<body>
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+<main>
+    <h1>Animals</h1>
+    <p class="msg" th:if="${message}" th:text="${message}"></p>
+    <p class="err" th:if="${error}" th:text="${error}"></p>
+
+    <p><a th:href="@{/animals/add}">Add animal</a></p>
+
+    <table th:if="${!animals.isEmpty()}">
+        <tr>
+            <th>ID</th><th>Name</th><th>Sex</th><th>Species</th><th>Colour</th>
+            <th>Coat</th><th>Age</th><th>Adoption fee</th><th>Actions</th>
+        </tr>
+        <tr th:each="a : ${animals}">
+            <td th:text="${a.id}"></td>
+            <td th:text="${a.name}"></td>
+            <td th:text="${a.sex}"></td>
+            <td th:text="${a.species}"></td>
+            <td th:text="${a.colour}"></td>
+            <td th:text="${a.coat}"></td>
+            <td th:text="${a.age}"></td>
+            <td th:text="${fees[a.id] != null} ? '$' + ${#numbers.formatDecimal(fees[a.id], 1, 'COMMA', 2, 'POINT')} : 'n/a'"></td>
+            <td>
+                <a th:href="@{/animals/edit/{id}(id=${a.id})}">Edit</a>
+                <form class="inline" method="post" th:action="@{/animals/delete/{id}(id=${a.id})}"
+                      onsubmit="return confirm('Delete this animal?');">
+                    <button type="submit">Delete</button>
+                </form>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="7"><b>Total of all adoption fees</b></td>
+            <td colspan="2"><b th:text="'$' + ${#numbers.formatDecimal(totalFees, 1, 'COMMA', 2, 'POINT')}"></b></td>
+        </tr>
+    </table>
+    <p th:if="${animals.isEmpty()}">There are no animals yet.</p>
+</main>
+</body>
+</html>

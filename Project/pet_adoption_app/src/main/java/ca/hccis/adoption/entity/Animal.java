@@ -1,14 +1,51 @@
 package ca.hccis.adoption.entity;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.validation.constraints.DecimalMax;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
+
+@Entity
+@Table(name = "Animal")
 public class Animal {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @NotBlank(message = "Name is required")
+    @Size(max = 50, message = "Name can be at most 50 characters")
     private String name;
+
+    @NotBlank(message = "Sex is required")
+    @Pattern(regexp = "(?i)^(male|female|m|f)$", message = "Sex must be Male or Female (M or F)")
     private String sex;
+
+    @NotBlank(message = "Species is required")
+    @Pattern(regexp = "(?i)^(cat|dog)$", message = "Species must be Cat or Dog")
     private String species;
+
+    @NotBlank(message = "Colour is required")
+    @Size(max = 30, message = "Colour can be at most 30 characters")
     private String colour;
+
+    @NotBlank(message = "Coat is required")
+    @Pattern(regexp = "(?i)^(short|medium|long|bald)$", message = "Coat must be Short, Medium, Long or Bald")
     private String coat;
+
+    @DecimalMin(value = "0.0", message = "Age cannot be negative")
+    @DecimalMax(value = "20.0", message = "Age cannot be more than 20")
     private double age;
+
+    // Required by JPA and by Spring when binding the form
+    public Animal() {
+    }
 
     public Animal(int id, String name, String sex, String species,
                   String colour, String coat, double age) {
@@ -22,33 +59,26 @@ public class Animal {
         this.age = age;
     }
 
-    public int getId() {
-        return id;
-    }
+    public int getId() { return id; }
+    public void setId(int id) { this.id = id; }
 
-    public String getName() {
-        return name;
-    }
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
 
-    public String getSex() {
-        return sex;
-    }
+    public String getSex() { return sex; }
+    public void setSex(String sex) { this.sex = sex; }
 
-    public String getSpecies() {
-        return species;
-    }
+    public String getSpecies() { return species; }
+    public void setSpecies(String species) { this.species = species; }
 
-    public String getColour() {
-        return colour;
-    }
+    public String getColour() { return colour; }
+    public void setColour(String colour) { this.colour = colour; }
 
-    public String getCoat() {
-        return coat;
-    }
+    public String getCoat() { return coat; }
+    public void setCoat(String coat) { this.coat = coat; }
 
-    public double getAge() {
-        return age;
-    }
+    public double getAge() { return age; }
+    public void setAge(double age) { this.age = age; }
 
     //Calculations for adoption fees.
     public double calculate() {
@@ -100,7 +130,6 @@ public class Animal {
 
         return (speciesCost + coatCost) * ageRate;
     }
-
 
     @Override
     public String toString() {

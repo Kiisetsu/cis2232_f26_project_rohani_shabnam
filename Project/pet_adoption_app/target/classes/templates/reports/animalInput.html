@@ -2,6 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
     <title>Animal Report</title>
     <style>
         html { --main-color: #D9C2F0; }
@@ -12,7 +13,7 @@
     </style>
 </head>
 <body>
-<header><h1>Animals by Species and Age</h1></header>
+<div th:replace="~{fragments/navbar :: navbar}"></div>
 <main>
     <form method="post" th:action="@{/reports/animals}">
         <label>Species

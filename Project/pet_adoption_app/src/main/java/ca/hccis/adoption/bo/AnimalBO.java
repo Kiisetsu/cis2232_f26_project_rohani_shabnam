@@ -37,6 +37,10 @@ public class AnimalBO {
         double ageRate;
         double age = animal.getAge();
 
+        if (!AnimalBO.isValidSex(animal.getSex())) {
+            throw new IllegalArgumentException("Sex must be Male, Female, M or F.");
+        }
+
         if ("cat".equalsIgnoreCase(animal.getSpecies())) {
             speciesCost = 200;
             if (age >= 0 && age < 1)        ageRate = 1.5;
@@ -63,6 +67,11 @@ public class AnimalBO {
         else throw new IllegalArgumentException("Coat must be short, medium, long or bald.");
 
         return (speciesCost + coatCost) * ageRate;
+    }
+
+    public static boolean isValidSex(String sex) {
+        return "male".equalsIgnoreCase(sex) || "female".equalsIgnoreCase(sex)
+                || "m".equalsIgnoreCase(sex) || "f".equalsIgnoreCase(sex);
     }
 }
 

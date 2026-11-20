@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+<nav th:fragment="navbar" class="navbar">
+    <a th:href="@{/}" class="brand">Pet Adoption</a>
+    <a th:href="@{/}" class="nav-link">Home</a>
+    <a th:href="@{/animals}" class="nav-link">Animals</a>
+    <a th:href="@{/reports/animals}" class="nav-link">Report</a>
+    <a th:href="@{/animals/add}" class="nav-link">Add Animal</a>
+</nav>
+</body>
+</html>

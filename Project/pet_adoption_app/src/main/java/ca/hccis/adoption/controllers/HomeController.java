@@ -3,6 +3,7 @@ package ca.hccis.adoption.controllers;
 import ca.hccis.adoption.dao.AnimalDAO;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.sql.SQLException;
 import java.util.Map;
@@ -26,5 +27,10 @@ public class HomeController {
             model.addAttribute("error", "Could not load animals: " + e.getMessage());
         }
         return "index";
+    }
+
+    @RequestMapping("/add")
+    public String add() {
+        return "/animals/add";
     }
 }

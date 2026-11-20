@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Animal</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+
+<h1>Add Animal</h1>
+
+<form th:action="@{/animals/add}" method="post">
+
+    <label>Name</label>
+    <label>
+        <input type="text" name="name" required>
+    </label>
+
+    <label>Sex</label>
+    <label>
+        <select name="sex" required>
+            <option value="">-- Select --</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+        </select>
+    </label>
+
+    <label>Species</label>
+    <label>
+        <select name="species" required>
+            <option value="">-- Select --</option>
+            <option value="Cat">Cat</option>
+            <option value="Dog">Dog</option>
+        </select>
+    </label>
+
+    <label>Colour</label>
+    <label>
+        <input type="text" name="colour" required>
+    </label>
+
+    <label>Coat</label>
+    <select name="coat" required>
+        <option value="">-- Select --</option>
+        <option value="Short">Short</option>
+        <option value="Medium">Medium</option>
+        <option value="Long">Long</option>
+        <option value="Bald">Bald</option>
+    </select>
+
+    <label>Age (years)</label>
+    <label>
+        <input type="number" name="age" step="0.1" min="0" max="20" required>
+    </label>
+
+    <button type="submit">Add</button>
+</form>
+</body>
+</html>
