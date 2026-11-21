@@ -327,7 +327,7 @@ Arrange invoice list tittle and add button
 }
 
 .navbar {
-    background: var(--main-color);
+    background: #6b3fa0;
     padding: 0.8rem 2rem;
     display: flex;
     gap: 1.5rem;
@@ -337,12 +337,13 @@ Arrange invoice list tittle and add button
     font-weight: bold;
     font-size: 1.2rem;
     text-decoration: none;
-    color: #000;
+    color: #fff;
 }
 .navbar .nav-link {
     text-decoration: none;
-    color: #333;
+    color: #f0e6fa;
 }
 .navbar .nav-link:hover {
     text-decoration: underline;
+    color: #fff;
 }

@@ -2,13 +2,16 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
     <title th:text="${formTitle}">Animal</title>
     <style>
         html { --main-color: #D9C2F0; }
-        body { font-family: sans-serif; margin: 0; }
-        .navbar { background: var(--main-color); padding: 0.8rem 2rem; display: flex; gap: 1.5rem; align-items: center; }
-        .navbar .brand { font-weight: bold; font-size: 1.2rem; text-decoration: none; color: #000; }
-        .navbar .nav-link { text-decoration: none; color: #333; }
+        body { font-family: sans-serif; margin: 0; background: #D9C2F0; }
+        header { background: var(--main-color); padding: 1rem 2rem; }
+        .navbar { background: #6b3fa0; padding: 0.8rem 2rem; display: flex; gap: 1.5rem; align-items: center; }
+        .navbar .brand { font-weight: bold; font-size: 1.2rem; text-decoration: none; color: #fff; }
+        .navbar .nav-link { text-decoration: none; color: #f0e6fa; }
+        .navbar .nav-link:hover { text-decoration: underline; color: #fff; }
         main { padding: 2rem; }
         label { display: block; margin-top: 1rem; }
         .err { color: red; font-size: 0.9rem; }
